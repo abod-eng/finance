@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <h1>History</h1>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Type</th>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for transaction in transactions %}
+                <tr>
+                    <td>{{ transaction.type }}</td>
+                    <td>{{ transaction.symbol }}</td>
+                    <td>{{ transaction.shares }}</td>
+                    <td>{{ transaction.price }}</td>  <!-- Format the price with usd filter -->
+                    <td>{{ (transaction.shares * transaction.price)}}</td>  <!-- Calculate total and format it -->
+                    <td>{{ transaction.timestamp }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
